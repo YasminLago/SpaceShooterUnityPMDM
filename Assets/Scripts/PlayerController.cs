@@ -8,6 +8,7 @@ public class Boundery {
 public class PlayerController : MonoBehaviour {
 
     Rigidbody rb;
+    AudioSource audio;
     public Boundery boundery;
 
     public float speed;
@@ -21,12 +22,14 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Update() {
         if (Input.GetButton("Fire1") && Time.time > nextFire) {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            audio.Play();
         }
     }
 
